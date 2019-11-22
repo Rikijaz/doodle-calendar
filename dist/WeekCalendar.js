@@ -440,7 +440,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.handleSelectionStop = function (e) {
+
     if (e.button !== 0) {
+
       return;
     }
 
@@ -456,6 +458,7 @@ var _initialiseProps = function _initialiseProps() {
 
 
     if (startSelectionPosition == null) {
+
       return;
     }
 
@@ -486,11 +489,29 @@ var _initialiseProps = function _initialiseProps() {
         preselectedInterval: preselectedInterval,
         updateEvent: false
       });
+
+      // hack
+
+      var _state5 = _this3.state,
+        preselectedInterval = _state5.preselectedInterval,
+        updateEvent = _state5.updateEvent;
+
+      var eventValue = 'test';
+
+      var _intervals = Utils.getIntervals(preselectedInterval.start, preselectedInterval.end);
+      var result = _intervals.map(function (interval) {
+
+        return _extends({}, interval, eventValue);
+      });
+      _this3.props.onIntervalSelect(result);
+
+      _this3.setState({ preselectedInterval: null });
+
+      // hack
     } else {
       var result = Utils.getIntervals(start, end);
-      if (_this3.props.onIntervalSelect) {
-        _this3.props.onIntervalSelect(result);
-      }
+      _this3.props.onIntervalSelect(result);
+
     }
 
     _this3.setState({
@@ -511,10 +532,12 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.submitPreselectedInterval = function (newValue) {
+    // console.trace('its somewhere in here');
+    // console.log(({}).toString.call(newValue).match(/\s([a-zA-Z]+)/)[1].toLowerCase());
+
     var _state5 = _this3.state,
         preselectedInterval = _state5.preselectedInterval,
         updateEvent = _state5.updateEvent;
-
 
     if (updateEvent) {
       if (_this3.props.onIntervalUpdate) {
@@ -523,8 +546,10 @@ var _initialiseProps = function _initialiseProps() {
     } else if (_this3.props.onIntervalSelect) {
       var _intervals = Utils.getIntervals(preselectedInterval.start, preselectedInterval.end);
       var result = _intervals.map(function (interval) {
+
         return _extends({}, interval, newValue);
       });
+
       _this3.props.onIntervalSelect(result);
     }
 
