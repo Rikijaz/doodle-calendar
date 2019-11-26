@@ -228,6 +228,7 @@ class WeekCalendar extends React.Component {
   }
 
   submitPreselectedInterval = (newValue) => {
+    console.trace('its somewhere in here');
     const { preselectedInterval, updateEvent } = this.state;
 
     if (updateEvent) {
