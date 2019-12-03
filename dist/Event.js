@@ -51,7 +51,7 @@ var Event = function (_React$PureComponent) {
         _react2.default.createElement(
           'span',
           null,
-          start.format('HH:mm') + ' - ' + end.format('HH:mm')
+          start.format('hh:mm a') + ' - ' + end.format('hh:mm a')
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement('br', null),
